@@ -1,3 +1,4 @@
 {
-    "terminal.explorerKind": "external"
+    "terminal.explorerKind": "external",
+    "python.pythonPath": "PsycheVir\\Scripts\\python.exe"
 }
