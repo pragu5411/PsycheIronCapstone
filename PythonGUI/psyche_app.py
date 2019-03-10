@@ -1,4 +1,8 @@
 import tkinter as tk
+import spiceypy as spice
+from DataManger import DataManger as DM
+
+
 HEIGHT = 800
 WIDTH = 800
 FONT = ('Times New Roman', 12)
@@ -9,6 +13,9 @@ FONTCOLOR = '#F0F0F0'
 class psyche_app:
     
     def __init__(self,master):
+
+        self.data_sets = DM() 
+
         window = master
         canvas = tk.Canvas(window, height=HEIGHT, width=WIDTH)
         canvas.pack()
@@ -27,7 +34,7 @@ class psyche_app:
         self.add_kernal.grid(row= 0, column =0, padx = 15, pady = 5)
         self.remove_kernal = tk.Button(master=self.kernel_menu, text = "Remove Kernel", font = FONT,bg = BUTTONCOLOR, fg = FONTCOLOR)
         self.remove_kernal.grid(row= 0, column =1, padx = 15, pady = 5)
-        self.refresh_kernal = tk.Button(master=self.kernel_menu, text = "Refresh", font = FONT,bg = BUTTONCOLOR, fg = FONTCOLOR)
+        self.refresh_kernal = tk.Button(master=self.kernel_menu, text = "Refresh", font = FONT,bg = BUTTONCOLOR, fg = FONTCOLOR, command = self.refresh_event)
         self.refresh_kernal.grid(row= 0, column =3, padx = 15, pady = 5)
         self.kernel_menu.place(relx=0,rely=.7,relwidth = 1, relheight =.3)
 
@@ -82,6 +89,20 @@ class psyche_app:
         self.export_menu.place(relx=0,rely=.7,relwidth = 1, relheight =.3)
 
         window.mainloop()
+    
+    def refresh_event(self,*args,**kwargs):
+        self.kernel_list.delete(0,tk.END)
+        self.data_sets.update()
+        list_of_kernel = self.data_sets.datasets
+        for kernel_title in list_of_kernel.keys():
+            self.kernel_list.insert(tk.END, kernel_title)
+
+    def export_event():
+        pass
+    def import_event():
+        pass
+    def delete_event():
+        pass
 
 
 
