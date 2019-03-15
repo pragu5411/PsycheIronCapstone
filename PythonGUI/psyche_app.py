@@ -142,7 +142,7 @@ class psyche_app:
         frameon=None, metadata=None)
             
         dist = np.asarray(dist)
-        print(dist) 
+        
         fig2 = plt.figure(figsize=(9, 9))
         ax2  = fig2.add_subplot(111, projection='3d')
         ax2.plot(times,dist)
