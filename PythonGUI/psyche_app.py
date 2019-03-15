@@ -133,8 +133,9 @@ class psyche_app:
         fig = plt.figure(figsize=(9, 9))
         ax  = fig.add_subplot(111, projection='3d')
         ax.plot(pos[0], pos[1], pos[2])
-        plt.title(f'SpiceyPy {target} Position from {time_one} to {time_two}')
-            
+        plt.title(f'{target.lower().capitalize()} Position(X,Y,Z) from {time_one.lower().capitalize()} to {time_two.lower().capitalize()}')
+      
+
         pos_graph_file_path = os.path.join(content_folder,"posgraph.pdf")
         plt.savefig(pos_graph_file_path, dpi=None, facecolor='w', edgecolor='w',
         orientation='portrait', papertype='letter', format='pdf',
@@ -144,10 +145,11 @@ class psyche_app:
         dist = np.asarray(dist)
         
         fig2 = plt.figure(figsize=(9, 9))
-        ax2  = fig2.add_subplot(111, projection='3d')
+        ax2  = fig2.add_subplot(111)
         ax2.plot(times,dist)
-        plt.title(f'SpiceyPy {target} distance from {observer} taken from {time_one} to {time_two}')
-
+        plt.title(f'{target.lower().capitalize()} Distance with Respective from {observer.lower().capitalize()} from {time_one.lower().capitalize()} to {time_two.lower().capitalize()}')
+        plt.xlabel("Time in Seconds") 
+        plt.ylabel('Distance in Light Time') 
         dist_graph_file_path = os.path.join(content_folder,"distgraph.pdf")
         plt.savefig(dist_graph_file_path, dpi=None, facecolor='w', edgecolor='w',
         orientation='portrait', papertype='letter', format='pdf',
