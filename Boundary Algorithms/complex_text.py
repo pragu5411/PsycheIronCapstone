@@ -10,7 +10,7 @@ def clear(win):
 
 def main():
 
-    win = gp.GraphWin("Boundary Demo", 600, 400)
+    win = gp.GraphWin("Complexity Demo", 600, 400)
     win.setCoords(0,0,600, 400)
     win.setBackground("black")
     
@@ -32,18 +32,13 @@ def main():
             point.draw(win)
            
  
-            print("All Points",[(round(pt.getX(),2), round(pt.getY(),2)) for pt in list_of_points])
-            convex_list = convex_hull([(round(pt.getX(),2), round(pt.getY(),2)) for pt in list_of_points])
-            print("convex_list: ",convex_list)
-            if(convex_list):
-                clear(win)
-                for pt in list_of_points:
-                    point.setOutline("white")
-                    pt.draw(win)
-                formated_convex_list = [gp.Point(x[0],x[1]) for x in convex_list]
-                print("Formated Conex List (Points)",formated_convex_list)
-                poly = gp.Polygon(formated_convex_list)
-                
+            
+            
+            clear(win)
+            for pt in list_of_points:
+                point.setOutline("white")
+                pt.draw(win)
+                poly = gp.Polygon(list_of_points)
                 poly.setOutline("white")
                 poly.draw(win)
 
