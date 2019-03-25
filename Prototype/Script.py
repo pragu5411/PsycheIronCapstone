@@ -77,6 +77,65 @@ def interval():
 	#print(pos)
 #spiceypy.str2et("2012-12-03 12:23:52")
 
+
+#
+for i in range(5):
+		#
+		# Uses the sincpt to determine coordinates of the
+		# intersection of this vector with the surface
+		# of Dawn
+		#
+		
+	print( 'Vector: {:s}\n'.format( vecnam[i] ) )
+	for j in range(2):
+		print ( ' Target shape model: {:s}\n'.format(
+					method[j] ) )
+	try:
+			[point, trgepc, srfvec ] = spiceypy.sincpt(
+			method[j], 'DAWN', et,
+			'IAU_DAWN', 'LT+S', 'DAWN',
+			insfrm, bounds[i] )
+			#
+			# Intersection is found and the position vector is displayed 
+			# 
+			# 
+			#
+			
+			
+			print( ' Position vector of surface intercept '
+			'in the IAU_DAWN frame (km):' )
+			print( ' X = {:16.3f}'.format( point[0] ) )
+			print( ' Y = {:16.3f}'.format( point[1] ) )
+			print( ' Z = {:16.3f}'.format( point[2] ) )
+			
+			
+			#
+			# Display the planetocentric latitude and longitude
+			# of the intercept.
+			#
+			[radius, lon, lat] = spiceypy.reclat( point )
+			print( ' Planetocentric coordinates of '
+			'the intercept (degrees):' )
+			print( ' LAT = {:16.3f}'.format(
+			lat * spiceypy.dpr() ) )
+			print( ' LON = {:16.3f}'.format(
+			lon * spiceypy.dpr() ) )
+			
+			
+			#
+			# Compute the illumination angles at this
+			# point.
+			#
+			[ trgepc, srfvec, phase, solar, \
+			emissn, visibl, lit ] = \
+			spiceypy.illumf(
+			method[j], 'DAWN', 'SUN', et,
+			'IAU_DAWN', 'LT+S', 'DAWN', point )
+			print( ' Phase angle (degrees): '
+			'{:16.3f}'.format( phase*spiceypy.dpr() ) )
+			print( ' Solar incidence angle (degrees): '
+			'{:16.3f}'.format( solar*spiceypy.dpr() ) )
+
 def driver():
 	print("What action would you like to perform?")
 	action1=input()
